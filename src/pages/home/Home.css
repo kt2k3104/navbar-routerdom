@@ -1,0 +1,6 @@
+.container-home {
+  width: 100vw;
+  height: calc(100vh - 60px);
+  background-image: url(https://hips.hearstapps.com/hmg-prod/images/dsc01939-1638289406.jpg);
+  background-size: contain;
+}

@@ -1,0 +1,56 @@
+.isActive {
+  color: #333;
+  text-decoration: none;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.isPending {
+  color: #333;
+  text-decoration: none;
+}
+
+.td_none {
+  color: #333;
+  text-decoration: none;
+  padding: 8px 12px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.nav-bar {
+  width: 100vw;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: orange;
+}
+
+.nav-left {
+  margin-left: 30px;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-right {
+  display: flex;
+  margin-right: 150px;
+  gap: 40px;
+}
+
+.nav-right button {
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: orange;
+  border: none;
+  font-size: 22px;
+  font-weight: 500;
+}
+.nav-right button:hover {
+  font-weight: 700;
+}
