@@ -1,6 +1,26 @@
-.container-home {
-  width: 100vw;
+.homeContainer {
+  /* padding-top: 60px; */
+}
+
+.listRes {
   height: calc(100vh - 60px);
-  background-image: url(https://hips.hearstapps.com/hmg-prod/images/dsc01939-1638289406.jpg);
-  background-size: contain;
+  /* margin-left: 10vw; */
+  /* margin-right: 10vw; */
+  display: grid;
+  grid-template-columns: auto auto auto;
+  overflow: auto;
+  padding: 0 180px;
+}
+/* .listDish::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
+} */
+
+.ress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 328px; */
+  /* height: 250px; */
+  margin: 15px;
 }

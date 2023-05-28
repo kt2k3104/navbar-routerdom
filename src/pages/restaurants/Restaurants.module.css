@@ -1,0 +1,23 @@
+.restaurants-container {
+  padding-top: 20px;
+  width: 1250px;
+  margin: 0 auto;
+}
+/* .center {
+  height: calc(100vh - 60px);
+  width: 500px;
+  overflow: auto;
+} */
+
+.res {
+  width: 328px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+}
+
+/* .center {
+  width: 80vw;
+} */

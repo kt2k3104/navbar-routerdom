@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Home.css";
+import Restaurant from "../../components/Restaurant/Restaurant";
+import RestaurantContext from "../../contexts/restaurantContext";
+import AuthContext from "../../contexts/authContext";
 
 export default function Home() {
+  const restCtx = useContext(RestaurantContext);
+  const authCtx = useContext(AuthContext);
+
   return (
-    <div className="container-home">
-      <h1>Home</h1>
+    <div className="homeContainer">
+      <div className="listRes">
+        {restCtx.restaurants.map((val) => {
+          return (
+            <div key={val.id} className="ress">
+              <Restaurant
+                resName={val.name}
+                resImage={val.imageUrl}
+                resUser={val.userName}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
