@@ -13,7 +13,7 @@ form h1 {
   margin-left: calc(50% - 120px);
   margin-right: calc(50% - 120px);
   margin-bottom: 20px;
-  width: 240px;
+  width: 100%;
 }
 
 textarea,
@@ -57,8 +57,8 @@ li {
   border-radius: 8px;
   color: white;
   font-weight: bold;
-  margin: 0 calc(50% - 75px);
-  width: 150px;
+  margin: 0 calc(50% - 90px);
+  width: 180px;
 }
 .button-submit:hover {
   cursor: pointer;

@@ -1,17 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./New.module.css";
 import classNames from "classnames/bind";
 
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import RestaurantContext from "../../contexts/restaurantContext";
 import showToastMessage from "../../helpers/toastMessaage";
 
 function New() {
+  const location = useLocation();
+  const [rest, setRest] = useState(undefined);
+
   const navigation = useNavigate();
   const cx = classNames.bind(styles);
 
   const restCtx = useContext(RestaurantContext);
+
+  useEffect(() => {
+    setRest(location.state?.rest);
+  }, [location.state]);
 
   const {
     register,
@@ -19,29 +26,54 @@ function New() {
     formState: { errors },
     watch,
     reset,
+    setValue,
   } = useForm();
 
+  useEffect(() => {
+    reset();
+    if (rest) {
+      setValue("name", rest.name);
+      setValue("address", rest.address);
+      setValue("introduction", rest.introduction);
+    }
+  }, [rest]);
   const onSubmit = async (data) => {
     console.log(data);
     // restCtx.saveDataFirebase(data);
-    try {
-      const response = await restCtx.savedARestaurant(data);
+    if (!rest) {
+      try {
+        const response = await restCtx.savedARestaurant(data);
 
-      if (response) {
-        console.log(response.data);
-        reset();
-        restCtx.fetchAllRest();
-        showToastMessage("them thanh cong", "success");
-        navigation("/");
+        if (response) {
+          console.log(response.data);
+          reset();
+          restCtx.fetchAllRest();
+          showToastMessage("them thanh cong", "success");
+          navigation("/");
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
+    } else {
+      try {
+        const response = await restCtx.updateARestaurant(data, rest.id);
+
+        if (response) {
+          console.log(response.data);
+          reset();
+          restCtx.fetchAllRest();
+          showToastMessage("update thanh cong", "success");
+          navigation("/");
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
   console.log(watch("name"));
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>New Restaurant</h1>
+      <h1>{`${rest ? "Update" : "New"} restaurant`}</h1>
       <label htmlFor="name">Name</label>
       <input
         type="text"
@@ -89,13 +121,14 @@ function New() {
             return false;
           },
         })}
+        // value={rest ? rest.imageUrl : ""}
       />
       {errors.image?.type === "required" && <li>Vui lòng chọn ảnh</li>}
       {errors.image?.type === "validate" && (
         <li>Vui lòng chọn đúng file ảnh</li>
       )}
       <button className={cx("button-submit")} type="submit">
-        Add Restaurant
+        {rest ? "Update" : "Add"} Restaurant
       </button>
     </form>
   );

@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Nav.css";
 import AuthContext from "../../contexts/authContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function Nav() {
   const navigation = useNavigate();
   const authCtx = useContext(AuthContext);
-  console.log(authCtx);
   return (
     <div className="nav-bar">
       <div className="nav-left">
@@ -73,10 +74,7 @@ export default function Nav() {
         {authCtx.isLoggined && (
           <div className="user">
             <div className="avatar">
-              <img
-                alt="avt"
-                src="https://scontent.fhan14-3.fna.fbcdn.net/v/t39.30808-6/323887630_3454673894768857_3681784209111605314_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=NyZXnsbcavkAX9Lxji-&_nc_oc=AQlkONkjJ3lJ7lx-9wwM4A_8tEY13ea0TTVupXMzABuszJjoC8sq_2TNtSdhMhtravs&_nc_ht=scontent.fhan14-3.fna&oh=00_AfCziui8O1YFb1f4rUjZcsBqKp5ZudHTlWRnKvveQuvrPA&oe=6471E12B"
-              />
+              <FontAwesomeIcon icon={faUser} />
             </div>
             <h4>{authCtx.userName}</h4>
           </div>
@@ -96,7 +94,8 @@ export default function Nav() {
           <button
             className="log-out"
             onClick={() => {
-              authCtx.loginHandle("khai@vnu.edu.vn", "12345");
+              // authCtx.loginHandle("yae@vnu.edu.vn", "12345");
+              navigation("/login");
             }}
           >
             Login

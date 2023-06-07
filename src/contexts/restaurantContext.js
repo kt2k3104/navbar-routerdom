@@ -5,6 +5,8 @@ import { firebase } from "../firebase";
 const RestaurantContext = React.createContext({
   restaurants: [],
   savedARestaurant: () => {},
+  updateARestaurant: () => {},
+  deleteARestaurant: () => {},
   fetchAllRest: () => {},
   saveDataFirebase: () => {},
   getDataFirebase: () => {},
@@ -72,6 +74,41 @@ export const RestaurantContextProvider = (props) => {
       console.log(err);
     }
   };
+  const updateARestaurant = (restaurant, id) => {
+    restaurant.image = restaurant.image[0];
+
+    const token = localStorage.getItem("token");
+    try {
+      return axios.put(
+        `http://localhost:8080/api/v1/restaurants/${id}`,
+        restaurant,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const deleteARestaurant = (id) => {
+    const token = localStorage.getItem("token");
+    try {
+      return axios.delete(
+        `http://localhost:8080/api/v1/restaurants/${id}`,
+
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   async function fetchAllRest() {
     try {
@@ -99,7 +136,9 @@ export const RestaurantContextProvider = (props) => {
         savedARestaurant,
         fetchAllRest,
         saveDataFirebase,
-        getDataFirebase,
+        // getDataFirebase,
+        updateARestaurant,
+        deleteARestaurant,
       }}
     >
       {props.children}

@@ -25,18 +25,14 @@ export default function Restaurants() {
     slidesPerRow: 1,
     // draggable: true,
   };
-
+  console.log(restCtx.restaurants, "--------------");
   return (
     <div className={cx("restaurants-container")}>
       <Slider {...setting}>
         {restCtx.restaurants.map((val) => {
           return (
             <div key={val.id} className={cx("res")}>
-              <Restaurant
-                resName={val.name}
-                resImage={val.imageUrl}
-                resUser={val.userName}
-              />
+              <Restaurant rest={val} ShowEdit />
             </div>
           );
         })}

@@ -14,11 +14,7 @@ export default function Home() {
         {restCtx.restaurants.map((val) => {
           return (
             <div key={val.id} className="ress">
-              <Restaurant
-                resName={val.name}
-                resImage={val.imageUrl}
-                resUser={val.userName}
-              />
+              <Restaurant rest={val} />
             </div>
           );
         })}
